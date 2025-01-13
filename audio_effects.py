@@ -56,3 +56,17 @@ def add_tremolo(data, sample_rate, frequency, depth):
         tremolo_data[i] = min(255, max(0, tremolo_value))
 
     return tremolo_data
+
+# fade_out_last_seconds: duração do fade out em segundos
+def add_fade_out(data: bytearray, fade_out_duration: int, sample_rate: int) -> bytearray:
+    fade_out_samples = int(sample_rate * fade_out_duration)
+    faded_data = bytearray(len(data))
+
+    for i in range(len(data)):
+        if i >= len(data) - fade_out_samples:
+            # Aplicar fade out
+            faded_data[i] = int(data[i] * (1 - (i - (len(data) - fade_out_samples)) / fade_out_samples))
+        else:
+            faded_data[i] = data[i]
+
+    return faded_data

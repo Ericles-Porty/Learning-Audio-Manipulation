@@ -24,7 +24,7 @@ import struct
     - Dados do áudio: n bytes (amostras)
     Referência: https://en.wikipedia.org/wiki/WAV
 """
-def write_wav_file(filename, data, sample_rate):
+def write_wav_file(filename: str, data: bytearray, sample_rate: int = 44100) -> None:
     with open(filename, 'wb') as f:
         # Cabeçalho RIFF
         f.write(b'RIFF')

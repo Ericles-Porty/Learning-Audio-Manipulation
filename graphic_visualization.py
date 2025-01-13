@@ -9,6 +9,7 @@ def plot_audio_waveform(file_path):
         sample_rate = wav_file.getframerate()
         n_samples = wav_file.getnframes()
         n_channels = wav_file.getnchannels()
+        print (sample_rate, n_samples, n_channels)
 
         # Ler os dados do arquivo WAV
         raw_data = wav_file.readframes(n_samples)
@@ -35,4 +36,4 @@ def plot_audio_waveform(file_path):
         plt.show()
 
 # Exemplo de uso
-plot_audio_waveform("variable_sine_wave.wav")
+plot_audio_waveform("happy_birthday_to_you.wav")
