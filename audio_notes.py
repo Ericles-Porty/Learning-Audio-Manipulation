@@ -49,49 +49,9 @@ def save_melody(filename: int, melody: int, sample_rate: int = 44100):
     combined_waves = b"".join([generate_note(note, duration, sample_rate) for note, duration in melody])
 
     # Adiciona um fade out no final da melodia
-    faded_out_waves = add_fade_out(data = combined_waves, fade_out_duration = 4, sample_rate = sample_rate)
+    # faded_out_waves = add_fade_out(data = combined_waves, fade_out_duration = 4, sample_rate = sample_rate)
 
-    write_wav_file(filename, faded_out_waves, sample_rate)
+    write_wav_file(filename, combined_waves, sample_rate)
     print(f"Arquivo WAV gerado: {filename}")
 
 
-# Melodia de "Parabéns pra você"
-def happy_birthday_to_you():
-    BPM = 160
-    duration = get_note_duration(BPM)
-
-    melody = [
-        (get_lower_octave(G), duration["semínima"]), 
-        (get_lower_octave(G), duration["semínima"]), 
-        (get_lower_octave(A), duration["mínima"]), 
-        (get_lower_octave(G), duration["mínima"]),
-        (C, duration["mínima"]), 
-        (get_lower_octave(B), duration["semibreve"]),
-
-        (get_lower_octave(G), duration["semínima"]), 
-        (get_lower_octave(G), duration["semínima"]), 
-        (get_lower_octave(A), duration["mínima"]), 
-        (get_lower_octave(G), duration["mínima"]),
-        (D, duration["mínima"]), 
-        (C, duration["semibreve"]), 
-
-        (get_lower_octave(G), duration["semínima"]), 
-        (get_lower_octave(G), duration["semínima"]),
-        (G, duration["mínima"]), 
-        (E, duration["mínima"]),
-        (C, duration["mínima"]),
-        (get_lower_octave(B), duration["mínima"]),
-        (get_lower_octave(A), duration["semibreve"]),
-
-        (F, duration["semínima"]),
-        (F, duration["semínima"]),
-        (E, duration["mínima"]),
-        (C, duration["mínima"]),
-        (D, duration["mínima"]),
-        (C, duration["breve"])
-    ]
-
-    save_melody("happy_birthday_to_you.wav", melody)
-
-
-happy_birthday_to_you()
